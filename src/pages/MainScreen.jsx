@@ -25,7 +25,9 @@ const MainScreen = () => {
             </div>
           </Link>
         </div>
+        
         <div className="col-md-4 col-sm-6 mb-4">
+        <Link to="/faq">
           <div className="card custom-card blue h-100">
             <img
               src={FAQ}
@@ -36,7 +38,10 @@ const MainScreen = () => {
               <h5 className="card-title">FAQ</h5>
             </div>
           </div>
+          </Link>
         </div>
+       
+        
         <div className="col-md-4 col-sm-6 mb-4">
           <Link to="/chatbot">
             <div className="card custom-card yellow h-100">
