@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-import { sendMessageToChatbot } from "../helpers/chatbotApi.js";
-import "../css/chatbot.css"; // Si necesitas algún estilo, puedes crear el archivo CSS
+import { sendMessageToChatbot } from "../helpers/chatbotApi";
+import "../css/chatbot.css";
 
 const ChatbotScreen = () => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
 
   const handleSendMessage = async () => {
-    if (!message.trim()) return;
-
     try {
-      // Llama a la función sendChatbotMessage de helpers/chatbotApi
-      const botResponse = await sendMessageToChatbot(message);
-
-      // Actualiza el historial del chat con el mensaje del usuario y la respuesta del bot
+      const response = await sendMessageToChatbot(message, chatHistory);
       setChatHistory([
         ...chatHistory,
-        { sender: "user", text: message },
-        { sender: "bot", text: botResponse },
+        { autor: "usuario", contenido: message },
+        { autor: "bot", contenido: response.respuesta_bot },
       ]);
-
-      setMessage(""); // Limpia el mensaje después de enviarlo
+      setMessage("");
     } catch (error) {
       console.error("Error al enviar mensaje:", error);
     }
@@ -30,9 +24,9 @@ const ChatbotScreen = () => {
     <div className="chatbot-container mt-5">
       <div className="chat-history">
         {chatHistory.map((msg, index) => (
-          <div key={index} className={`chat-message ${msg.sender}`}>
-            {msg.sender === "user" ? "Tú: " : "Bot: "}
-            {msg.text}
+          <div key={index} className={`chat-message ${msg.autor}`}>
+            {msg.autor === "usuario" ? "Tú: " : "Bot: "}
+            {msg.contenido}
           </div>
         ))}
       </div>
