@@ -11,6 +11,7 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 import LoginAdmin from "./pages/LoginAdmin";
 import ChatbotScreen from "./pages/ChatbotScreen";
+import FaqScreen from "./pages/FaqScreen";
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -29,6 +30,7 @@ function App() {
           <Route path="/whatsapp" element={<WhatsAppScreen />} />
           <Route path="/turno" element={<TurnoScreen />} />
           <Route path="/chatbot" element={<ChatbotScreen />} />
+          <Route path="/faq" element={<FaqScreen />} />
           <Route
             path="/*"
             element={
